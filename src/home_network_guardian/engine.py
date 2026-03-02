@@ -41,7 +41,11 @@ class GuardianEngine:
     def _scan_devices(self) -> None:
         known = self.db.known_macs()
         allowed = self.settings.allowed_macs_set()
-        observed = discover_devices(self.settings.arp_command)
+        observed = discover_devices(
+            self.settings.arp_command,
+            active_scan=self.settings.active_scan_enabled,
+            lookup_vendors=self.settings.mac_vendor_lookup_enabled,
+        )
 
         for device in observed:
             trusted = device.mac in allowed

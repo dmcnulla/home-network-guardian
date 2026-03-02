@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     mode: str = Field(default="safe", pattern="^(safe|enforce)$")
 
     arp_command: str = "arp -an"
+    active_scan_enabled: bool = True
+    mac_vendor_lookup_enabled: bool = True
     allowed_macs: str = ""
 
     malicious_events_file: Path = Path("./data/malicious_events.jsonl")
